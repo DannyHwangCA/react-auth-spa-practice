@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FormError from './FormError';
 
 class Register extends Component {
     constructor() {
@@ -36,6 +37,9 @@ class Register extends Component {
                 <div className="card-body">
                   <h3 className="font-weight-light mb-3">Register</h3>
                   <div className="form-row">
+                      {this.state.errorMessage !== null ? (
+                          <FormError theMessage={this.state.errorMessage}/>
+                      ) : null }
                     <section className="col-sm-12 form-group">
                       <label
                         className="form-control-label sr-only"
