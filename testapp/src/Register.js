@@ -3,8 +3,8 @@ import FormError from './FormError';
 import firebase from './Firebase';
 
 class Register extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             displayName: '',
             email:'',
@@ -36,16 +36,21 @@ class Register extends Component {
             password: this.state.passOne
         }
         e.preventDefault();
-        firebase.auth().createUserWithEmailAndPassword(
-            registrationInfo.email,
-            registrationInfo.password
-        ).catch(error => {
-            if (error.message !== null) {
-                this.setState({errorMessage: error.message});
-            } else {
-                this.setState({errorMessage: null});
-            }
-        })
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(
+                registrationInfo.email,
+                registrationInfo.password
+            ).then (() => {
+                this.props.registerUser(registrationInfo.displayName);
+            })
+            .catch(error => {
+                if (error.message !== null) {
+                    this.setState({errorMessage: error.message});
+                } else {
+                    this.setState({errorMessage: null});
+                }
+            })
     }
 
     render(){
