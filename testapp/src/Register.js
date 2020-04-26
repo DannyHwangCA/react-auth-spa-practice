@@ -17,7 +17,13 @@ class Register extends Component {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
-        this.setState({[itemName]: itemValue})
+        this.setState({ [itemName]: itemValue}, () => {
+            if (this.state.passOne !== this.state.passTwo) {
+                this.setState({errorMessage: 'Passwords do not match'});
+            } else {
+                this.setState({errorMessage: null});
+            }
+        });
     }
 
     render(){
