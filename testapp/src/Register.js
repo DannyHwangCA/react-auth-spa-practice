@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FormError from './FormError';
+import firebase from './Firebase';
 
 class Register extends Component {
     constructor() {
@@ -12,6 +13,7 @@ class Register extends Component {
             errorMessage: null
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -25,6 +27,25 @@ class Register extends Component {
                 this.setState({errorMessage: null});
             }
         });
+    }
+
+    handleSubmit(e) {
+        var registrationInfo = {
+            displayName: this.state.displayName,
+            email: this.state.email,
+            password: this.state.passOne
+        }
+        e.preventDefault();
+        firebase.auth().createUserWithEmailAndPassword(
+            registrationInfo.email,
+            registrationInfo.password
+        ).catch(error => {
+            if (error.message !== null) {
+                this.setState({errorMessage: error.message});
+            } else {
+                this.setState({errorMessage: null});
+            }
+        })
     }
 
     render(){
@@ -101,7 +122,7 @@ class Register extends Component {
                     </section>
                   </div>
                   <div className="form-group text-right mb-0">
-                    <button className="btn btn-primary" type="submit">
+                    <button className="btn btn-primary" type="submit" onClick={this.handleSubmit}>
                       Register
                     </button>
                   </div>
