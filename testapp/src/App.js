@@ -36,7 +36,7 @@ class App extends Component {
           let meetings = snapshot.val();
           let meetingsList = [];
 
-          for(let item in meeting) {
+          for(let item in meetings) {
             meetingsList.push({
               meetingID: item,
               meetingName: meetings[item].meetingName
@@ -99,7 +99,7 @@ class App extends Component {
         <Router>
           <Home path="/" user={this.state.user}/>
           <Login path="/login" />
-          <Meetings path="/meetings" addMeeting={this.addMeeting}/>
+          <Meetings path="/meetings" meetings={this.state.meetings} addMeeting={this.addMeeting}/>
           <Register path="/register" registerUser={this.registerUser} />
         </Router>
       </div> 
