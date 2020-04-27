@@ -1,6 +1,28 @@
 import React, {Component} from 'react';
 
 class Meetings extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            meetingName: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(e) {
+        const itemName = e.target.name;
+        const itemValue = e.target.value;
+
+        this.setState({ [itemName]: itemValue});
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.addMeeting(this.state.meetingName);
+        this.setState({meetingName: ''});
+    }
+
     render(){
         return(
             <div className="container mt-4">
@@ -11,6 +33,7 @@ class Meetings extends Component {
         <div className="card-body text-center">
           <form
             className="formgroup"
+            onSubmit={this.handleSubmit}
           >
             <div className="input-group input-group-lg">
               <input
@@ -19,6 +42,8 @@ class Meetings extends Component {
                 name="meetingName"
                 placeholder="Meeting name"
                 aria-describedby="buttonAdd"
+                value={this.state.meetingName}
+                onChange={this.handleChange}
               />
               <div className="input-group-append">
                 <button
