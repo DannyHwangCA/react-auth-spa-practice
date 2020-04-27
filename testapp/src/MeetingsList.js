@@ -1,6 +1,20 @@
 import React, {Component} from 'react';
+import firebase from './Firebase';
+import {GoTrashcan} from 'react-icons/go';
 
 class MeetingsList extends Component {
+    constructor(props) {
+        super(props);
+        this.deleteMeeting = this.deleteMeeting.bind(this);
+    }
+
+    deleteMeeting = (e, whichMeeting) => {
+        e.preventDefault();
+        const ref = firebase
+        .database()
+        .ref(`meetings/${this.props.userID}/${whichMeeting}`);
+        ref.remove();
+    }
 
     render(){
         const {meetings} = this.props;
@@ -11,7 +25,7 @@ class MeetingsList extends Component {
                         <section className="btn-group align-self-center" role="group" aria-label="Meeting Options">
                             <button className="btn btn-small btn-outline-secondary"
                             title="Delete Meeting"
-                            onClick={e => this.deleteMeeting(e, item.meetingId)}
+                            onClick={e => this.deleteMeeting(e, item.meetingID)}
                             >
                                 <GoTrashcan />
                             </button>
