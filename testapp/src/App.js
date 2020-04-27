@@ -9,7 +9,7 @@ import Navigation from './Navigation'
 import Login from './Login';
 import Register from './Register';
 import Meetings from './Meetings';
-import CheckIn from './Meetings';
+import CheckIn from './Checkin';
 
 
 class App extends Component {
