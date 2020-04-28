@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from './Firebase';
+import AttendeesList from './AttendeesList';
 
 class Attendees extends React.Component {
     constructor(props){ 
@@ -40,7 +41,7 @@ class Attendees extends React.Component {
       </h1>
     </div>
   </div>
-  List Goes Here
+    <AttendeesList userId={this.props.userID} attendees={this.state.displayAttendees}/>
 </div>
         )
     }
