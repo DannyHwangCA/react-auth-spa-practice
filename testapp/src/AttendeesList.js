@@ -18,7 +18,8 @@ class AttendeesList extends React.Component {
                     }>
                         {admin && (
                             <div className="bin-group pr-2">
-                                <button className="btn btn-sm btn-outline-secondary"
+                                <button 
+                                className="btn btn-sm btn-outline-secondary"
                                 title="Delete Attendee"
                                 onClick={e => this.deleteAttendee(e, this.props.meetingID, item.attendeeID )}>
                                     <GoTrashcan />

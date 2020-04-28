@@ -42,7 +42,7 @@ class Attendees extends React.Component {
     </div>
   </div>
     <AttendeesList 
-    userId={this.props.userID} 
+    userID={this.props.userID} 
     meetingID={this.props.meetingID}
     adminUser={this.props.adminUser}
     attendees={this.state.displayAttendees}
