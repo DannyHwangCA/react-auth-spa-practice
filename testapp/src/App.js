@@ -10,6 +10,7 @@ import Login from './Login';
 import Register from './Register';
 import Meetings from './Meetings';
 import CheckIn from './Checkin';
+import Attendees from './Attendees'
 
 
 class App extends Component {
@@ -104,6 +105,9 @@ class App extends Component {
           meetings={this.state.meetings} 
           addMeeting={this.addMeeting} 
           userID={this.state.userID}/>
+          <Attendees path="/meetings" 
+          path="/attendees/:user/:meetingsID"
+          adminUser={this.state.userID}/>
           <CheckIn path="/checkin/:userID/:meetingID" />
           <Register path="/register" registerUser={this.registerUser} />
         </Router>
