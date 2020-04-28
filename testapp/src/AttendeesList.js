@@ -1,9 +1,17 @@
 import React from 'react';
 import { GoTrashcan } from 'react-icons/go';
+import firebase from './Firebase';
 
 class AttendeesList extends React.Component {
     constructor(props) {
         super(props);
+
+        this.deleteAttendee = this.deleteAttendee.bind(this);
+    }
+
+    deleteAttendee = (e, whichMeeting, whichAttendee) => {
+        e.preventDefault();
+        const adminUser = this.props.adminUser;
     }
 
     render() {
