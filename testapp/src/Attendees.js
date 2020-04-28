@@ -24,7 +24,9 @@ class Attendees extends React.Component {
                     attendeeEmail: attendees[item].attendeeEmail
                 })
             }
-
+            this.setState({
+                displayAttendees: attendeesList
+            })
         })
     }
 

@@ -105,8 +105,8 @@ class App extends Component {
           meetings={this.state.meetings} 
           addMeeting={this.addMeeting} 
           userID={this.state.userID}/>
-          <Attendees path="/meetings" 
-          path="/attendees/:user/:meetingsID"
+          <Attendees
+          path="/attendees/:userID/:meetingID"
           adminUser={this.state.userID}/>
           <CheckIn path="/checkin/:userID/:meetingID" />
           <Register path="/register" registerUser={this.registerUser} />
