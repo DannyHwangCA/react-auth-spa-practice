@@ -12,6 +12,8 @@ class AttendeesList extends React.Component {
     deleteAttendee = (e, whichMeeting, whichAttendee) => {
         e.preventDefault();
         const adminUser = this.props.adminUser;
+        const ref = firebase.database().ref(`meetings/${adminUser}/${whichMeeting}/attendees/${whichAttendee}`);
+        ref.remove();
     }
 
     render() {
