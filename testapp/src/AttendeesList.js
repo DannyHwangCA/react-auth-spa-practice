@@ -18,14 +18,16 @@ class AttendeesList extends React.Component {
         ref.remove();
     }
 
-    toggleStar = {e, star, whichMeeting, whichAttendee} => {
+    toggleStar = (e, star, whichMeeting, whichAttendee) => {
         e.preventDefault();
         const adminUser = this.props.adminUser;
         const ref = firebase.database()
         .ref(`meetings/${adminUser}/${whichMeeting}/attendees/${whichAttendee}/star`);
 
         if (star === undefined) {
-            
+            ref.set(true);
+        } else {
+            ref.set(!star);
         }
     }
 
