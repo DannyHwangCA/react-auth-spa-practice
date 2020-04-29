@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoTrashcan } from 'react-icons/go';
+import { GoTrashcan, GoStar } from 'react-icons/go';
 import firebase from './Firebase';
 
 class AttendeesList extends React.Component {
@@ -12,8 +12,21 @@ class AttendeesList extends React.Component {
     deleteAttendee = (e, whichMeeting, whichAttendee) => {
         e.preventDefault();
         const adminUser = this.props.adminUser;
-        const ref = firebase.database().ref(`meetings/${adminUser}/${whichMeeting}/attendees/${whichAttendee}`);
+        const ref = firebase
+        .database()
+        .ref(`meetings/${adminUser}/${whichMeeting}/attendees/${whichAttendee}`);
         ref.remove();
+    }
+
+    toggleStar = {e, star, whichMeeting, whichAttendee} => {
+        e.preventDefault();
+        const adminUser = this.props.adminUser;
+        const ref = firebase.database()
+        .ref(`meetings/${adminUser}/${whichMeeting}/attendees/${whichAttendee}/star`);
+
+        if (star === undefined) {
+            
+        }
     }
 
     render() {
@@ -28,6 +41,22 @@ class AttendeesList extends React.Component {
                     }>
                         {admin && (
                             <div className="bin-group pr-2">
+                                <button 
+                                className={
+                                    'btn btn-sm ' + (item.star ? 'btn-info' : 'btn-outline-secondary')
+                                }
+                                title="Give user a star!"
+                                onClick={e => 
+                                this.toggleStar(
+                                    e, 
+                                    item.star,
+                                    this.props.meetingID, 
+                                    item.attendeeID 
+                                    )
+                                    }
+                                >
+                                    <GoStar />
+                                </button>
                                 <button 
                                 className="btn btn-sm btn-outline-secondary"
                                 title="Delete Attendee"
