@@ -8,6 +8,7 @@ class Attendees extends React.Component {
         super(props);
         this.state = {
             searchQuery: '',
+            allAttendees: [],
             displayAttendees: []
         };
         this.handleChange = this.handleChange.bind(this)
@@ -32,6 +33,7 @@ class Attendees extends React.Component {
                 })
             }
             this.setState({
+                allAttendees: attendeesList,
                 displayAttendees: attendeesList
             })
         })
@@ -44,8 +46,18 @@ class Attendees extends React.Component {
         this.setState({ [itemName] : itemValue });
     }
 
+    chooseRandom() {
+        const randomAttendee = Math.floor(Math.random()*this.state.allAttendees.length);
+
+        this.resetQuery();
+        this.setState({
+            displayAttendees: [this.state.allAttendees[randomAttendee]]
+        })
+    }
+
     resetQuery() {
         this.setState({
+            displayAttendees: this.state.allAttendees,
             searchQuery: ''
         })
     }
