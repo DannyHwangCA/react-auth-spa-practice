@@ -81,6 +81,13 @@ class Attendees extends React.Component {
                     title="Reset search"
                     onClick={() => this.resetQuery()}
                     >
+                        <FaRandom />
+                    </button>
+
+                    <button className="btn btn-sm btn-outline-info"
+                    title="Reset search"
+                    onClick={() => this.resetQuery()}
+                    >
                         <FaUndo />
                     </button>
                 </div>
