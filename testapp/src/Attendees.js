@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from './Firebase';
 import AttendeesList from './AttendeesList';
-import {FaUndo} from 'react-icons/fa';
+import {FaUndo, FaRandom} from 'react-icons/fa';
 
 class Attendees extends React.Component {
     constructor(props){ 
@@ -12,6 +12,7 @@ class Attendees extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this)
         this.resetQuery = this.resetQuery.bind(this)
+        this.chooseRandom = this.chooseRandom.bind(this)
     }
 
     componentDidMount() {
@@ -79,7 +80,7 @@ class Attendees extends React.Component {
                 <div className="input-group-append">
                     <button className="btn btn-sm btn-outline-info"
                     title="Reset search"
-                    onClick={() => this.resetQuery()}
+                    onClick={() => this.chooseRandom()}
                     >
                         <FaRandom />
                     </button>
