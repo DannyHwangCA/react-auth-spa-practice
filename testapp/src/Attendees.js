@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from './Firebase';
 import AttendeesList from './AttendeesList';
+import {FaUndo} from 'react-icons/fa';
 
 class Attendees extends React.Component {
     constructor(props){ 
@@ -10,7 +11,7 @@ class Attendees extends React.Component {
             displayAttendees: []
         };
         this.handleChange = this.handleChange.bind(this)
-    
+        this.resetQuery = this.resetQuery.bind(this)
     }
 
     componentDidMount() {
@@ -42,12 +43,18 @@ class Attendees extends React.Component {
         this.setState({ [itemName] : itemValue });
     }
 
+    resetQuery() {
+        this.setState({
+            searchQuery: ''
+        })
+    }
+
     render() {
 
         const dataFilter = item => 
         item.attendeeName
             .toLowerCase()
-            .match(this.state.searchQuery.toLowerCase() && true)
+            .match(this.state.searchQuery.toLowerCase()) && true
             const filteredAttendees = this.state.displayAttendees.filter(dataFilter);
 
         return(
@@ -59,7 +66,9 @@ class Attendees extends React.Component {
       </h1>
 
         <div className="card bg-light mb-4">
+            
             <div className="card-body text-center">
+                <div className="card-body text-center">
                 <input type="text" 
                 name="searchQuery" 
                 value={this.state.searchQuery} 
@@ -67,6 +76,16 @@ class Attendees extends React.Component {
                 className="form-control" 
                 onChange={this.handleChange} 
                 />
+                <div className="input-group-append">
+                    <button className="btn btn-sm btn-outline-info"
+                    title="Reset search"
+                    onClick={() => this.resetQuery()}
+                    >
+                        <FaUndo />
+                    </button>
+                </div>
+                </div>
+                
 
             </div>
         </div>
